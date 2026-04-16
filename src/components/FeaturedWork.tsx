@@ -25,7 +25,7 @@ const categories = [
   {
     title: "Websites",
     gradient: "from-card via-muted/20 to-accent/15",
-    video: "/videos/simpletuition.mov",
+    video: "/videos/simpletuition.mp4",
     objectPosition: "top",
   },
 ];
@@ -96,7 +96,6 @@ function CategoryCard({
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{
         duration: 0.7,
-        delay: index * 0.12,
         ease: [0.16, 1, 0.3, 1],
       }}
     >
