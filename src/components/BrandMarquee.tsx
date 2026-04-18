@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const brands = [
@@ -33,7 +33,38 @@ const brands = [
 
 export default function BrandMarquee() {
   const ref = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const groupRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [marqueeDistance, setMarqueeDistance] = useState(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const group = groupRef.current;
+
+    if (!track || !group) {
+      return;
+    }
+
+    const updateDistance = () => {
+      const trackStyles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
+      setMarqueeDistance(group.offsetWidth + gap);
+    };
+
+    updateDistance();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateDistance();
+    });
+
+    resizeObserver.observe(track);
+    resizeObserver.observe(group);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
     <motion.div
@@ -46,11 +77,21 @@ export default function BrandMarquee() {
       <div className="relative w-full">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        <div className="flex w-max animate-marquee whitespace-nowrap">
+        <div className="px-10 md:px-16">
+          <div
+            ref={trackRef}
+            className="flex w-max animate-marquee items-center gap-20 whitespace-nowrap md:gap-32"
+            style={
+              {
+                "--marquee-distance": marqueeDistance ? `-${marqueeDistance}px` : "0px",
+              } as CSSProperties
+            }
+          >
           {[...Array(2)].map((_, dupeIdx) => (
             <div
+              ref={dupeIdx === 0 ? groupRef : undefined}
               key={dupeIdx}
-              className="flex shrink-0 items-center gap-20 px-10 md:gap-32 md:px-16"
+              className="flex shrink-0 items-center gap-20 md:gap-32"
             >
               {brands.map((brand, i) => (
                 <Image
@@ -65,6 +106,7 @@ export default function BrandMarquee() {
               ))}
             </div>
           ))}
+          </div>
         </div>
       </div>
     </motion.div>
