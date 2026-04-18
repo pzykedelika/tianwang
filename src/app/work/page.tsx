@@ -104,8 +104,9 @@ function BrandSection({ brand, index }: { brand: Brand; index: number }) {
                 <iframe
                   src={featured.media}
                   title={featured.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="autoplay; encrypted-media; picture-in-picture"
                   allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
                   className="absolute inset-0 w-full h-full"
                 />
               )}

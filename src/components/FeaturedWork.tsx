@@ -5,24 +5,25 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import AnimatedText from "./AnimatedText";
 import { ArrowUpRight } from "lucide-react";
+import { getYouTubeAutoplayEmbedUrl } from "@/lib/utils";
 
 const categories = [
   {
     title: "Sports",
     gradient: "from-accent/20 via-card to-muted/30",
-    media: "https://www.youtube.com/embed/--GjpQRF4EE?rel=0",
+    media: getYouTubeAutoplayEmbedUrl("--GjpQRF4EE"),
     mediaType: "youtube" as const,
   },
   {
     title: "Concerts",
     gradient: "from-muted/30 via-card to-accent-light/10",
-    media: "https://www.youtube.com/embed/XSwKn42et64?rel=0",
+    media: getYouTubeAutoplayEmbedUrl("XSwKn42et64"),
     mediaType: "youtube" as const,
   },
   {
     title: "Products",
     gradient: "from-accent-light/10 via-card to-accent/20",
-    media: "https://www.youtube.com/embed/4ZdJKstetI0?rel=0",
+    media: getYouTubeAutoplayEmbedUrl("4ZdJKstetI0"),
     mediaType: "youtube" as const,
   },
   {
@@ -124,10 +125,11 @@ function CategoryCard({
               <iframe
                 src={category.media}
                 title={category.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="autoplay; encrypted-media; picture-in-picture"
                 allowFullScreen
                 referrerPolicy="strict-origin-when-cross-origin"
-                className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
+                tabIndex={-1}
+                className="pointer-events-none absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
               />
             ) : null}
 

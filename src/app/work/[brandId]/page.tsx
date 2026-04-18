@@ -114,8 +114,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <iframe
               src={project.media}
               title={project.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
               className="absolute inset-0 w-full h-full"
             />
           )}
