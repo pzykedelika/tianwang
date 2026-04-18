@@ -38,7 +38,7 @@ export default function BrandMarquee() {
   const groupRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [marqueeDistance, setMarqueeDistance] = useState(0);
-  const [marqueeStart, setMarqueeStart] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(0);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -53,10 +53,10 @@ export default function BrandMarquee() {
       const trackStyles = window.getComputedStyle(track);
       const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
       const groupWidth = group.offsetWidth;
-      const viewportWidth = viewport.offsetWidth;
+      const nextViewportWidth = viewport.offsetWidth;
 
       setMarqueeDistance(groupWidth + gap);
-      setMarqueeStart(Math.min(0, viewportWidth - groupWidth));
+      setViewportWidth(nextViewportWidth);
     };
 
     updateDistance();
@@ -73,6 +73,11 @@ export default function BrandMarquee() {
       resizeObserver.disconnect();
     };
   }, []);
+
+  const copyCount =
+    marqueeDistance && viewportWidth
+      ? Math.max(3, Math.ceil(viewportWidth / marqueeDistance) + 2)
+      : 3;
 
   return (
     <motion.div
@@ -91,12 +96,12 @@ export default function BrandMarquee() {
             className="flex w-max animate-marquee items-center gap-20 whitespace-nowrap md:gap-32"
             style={
               {
-                "--marquee-start": `${marqueeStart}px`,
+                "--marquee-start": marqueeDistance ? `-${marqueeDistance}px` : "0px",
                 "--marquee-distance": marqueeDistance ? `-${marqueeDistance}px` : "0px",
               } as CSSProperties
             }
           >
-          {[...Array(2)].map((_, dupeIdx) => (
+          {Array.from({ length: copyCount }, (_, dupeIdx) => (
             <div
               ref={dupeIdx === 0 ? groupRef : undefined}
               key={dupeIdx}
