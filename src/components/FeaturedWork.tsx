@@ -22,7 +22,7 @@ const categories = [
   {
     title: "Products",
     gradient: "from-accent-light/10 via-card to-accent/20",
-    media: "/videos/nothingheadphones.mov",
+    media: "/videos/nothing-headphones-web.mp4",
     mediaType: "local" as const,
   },
   {
@@ -113,6 +113,7 @@ function CategoryCard({
                 loop
                 muted
                 playsInline
+                preload="auto"
                 controlsList="nodownload"
                 onContextMenu={(e) => e.preventDefault()}
                 style={{ objectPosition: category.objectPosition ?? "center" }}
