@@ -88,8 +88,8 @@ export default function BrandMarquee() {
       className="w-full overflow-hidden py-16 md:py-24"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="px-10 pb-6 md:px-16 md:pb-8">
-          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70 md:text-xs">
+        <div className="px-10 pb-8 text-center md:px-16 md:pb-10">
+          <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.35em] text-foreground/80 md:text-sm">
             Our Clients
           </p>
         </div>
