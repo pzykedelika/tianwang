@@ -88,17 +88,16 @@ export default function BrandMarquee() {
       className="w-full overflow-hidden py-16 md:py-24"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="relative z-20 px-10 pb-10 text-center md:px-16 md:pb-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.45em] text-white md:text-base">
-            Our Clients
-          </p>
-          <div className="mx-auto mt-4 h-px w-24 bg-white/20" />
-        </div>
-
         <div className="relative w-full">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         <div ref={viewportRef} className="px-10 md:px-16">
+          <div className="pb-6 text-center md:pb-8">
+            <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.35em] text-white/80 md:text-sm">
+              Our Clients
+            </p>
+          </div>
+
           <div
             ref={trackRef}
             className="flex w-max animate-marquee items-center gap-20 whitespace-nowrap md:gap-32"
