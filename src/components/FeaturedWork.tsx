@@ -16,7 +16,7 @@ const categories = [
   {
     title: "Concerts",
     gradient: "from-muted/30 via-card to-accent-light/10",
-    media: "/videos/concert.mp4",
+    media: "/videos/alfresco-concert-web.mp4",
     mediaType: "local" as const,
   },
   {
