@@ -129,7 +129,7 @@ function CategoryCard({
                 allowFullScreen
                 referrerPolicy="strict-origin-when-cross-origin"
                 tabIndex={-1}
-                className="pointer-events-none absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
+                className="pointer-events-none absolute inset-0 h-full w-full"
               />
             ) : null}
 
