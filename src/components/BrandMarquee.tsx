@@ -5,10 +5,30 @@ import { useRef } from "react";
 import Image from "next/image";
 
 const brands = [
-  { name: "St Peter's College", logo: "/images/brands/footer-logo-white-transparent-fixed.png" },
-  { name: "Nothing", logo: "/images/brands/realnothinglogo.png" },
-  { name: "Pure Blanks", logo: "/images/brands/LOGO-2-white-transparent.png" },
-  { name: "Simple Tuition", logo: "/images/brands/simple-tuition-white-logo.png" },
+  {
+    name: "St Peter's College",
+    logo: "/images/brands/footer-logo-white-transparent-fixed.png",
+    width: 2000,
+    height: 672,
+  },
+  {
+    name: "Nothing",
+    logo: "/images/brands/realnothinglogo.png",
+    width: 1539,
+    height: 373,
+  },
+  {
+    name: "Pure Blanks",
+    logo: "/images/brands/LOGO-2-white-transparent.png",
+    width: 2440,
+    height: 486,
+  },
+  {
+    name: "Simple Tuition",
+    logo: "/images/brands/simple-tuition-white-logo.png",
+    width: 461,
+    height: 266,
+  },
 ];
 
 export default function BrandMarquee() {
@@ -33,19 +53,15 @@ export default function BrandMarquee() {
               className="flex shrink-0 items-center gap-20 px-10 md:gap-32 md:px-16"
             >
               {brands.map((brand, i) => (
-                <div
+                <Image
                   key={`${dupeIdx}-${brand.name}`}
-                  className="relative h-16 md:h-24 w-56 md:w-80 flex-shrink-0"
-                >
-                  <Image
-                    src={brand.logo}
-                    alt={brand.name}
-                    fill
-                    priority={dupeIdx === 0 && i === 0}
-                    className="object-contain grayscale opacity-60"
-                    sizes="320px"
-                  />
-                </div>
+                  src={brand.logo}
+                  alt={brand.name}
+                  width={brand.width}
+                  height={brand.height}
+                  priority={dupeIdx === 0 && i === 0}
+                  className="h-16 w-auto shrink-0 grayscale opacity-60 md:h-24"
+                />
               ))}
             </div>
           ))}
