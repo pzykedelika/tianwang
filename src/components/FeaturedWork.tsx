@@ -5,26 +5,25 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import AnimatedText from "./AnimatedText";
 import { ArrowUpRight } from "lucide-react";
-import { getYouTubeAutoplayEmbedUrl } from "@/lib/utils";
 
 const categories = [
   {
     title: "Sports",
     gradient: "from-accent/20 via-card to-muted/30",
-    media: getYouTubeAutoplayEmbedUrl("--GjpQRF4EE"),
-    mediaType: "youtube" as const,
+    media: "/videos/summerintercol.mp4",
+    mediaType: "local" as const,
   },
   {
     title: "Concerts",
     gradient: "from-muted/30 via-card to-accent-light/10",
-    media: getYouTubeAutoplayEmbedUrl("XSwKn42et64"),
-    mediaType: "youtube" as const,
+    media: "/videos/concert.mp4",
+    mediaType: "local" as const,
   },
   {
     title: "Products",
     gradient: "from-accent-light/10 via-card to-accent/20",
-    media: getYouTubeAutoplayEmbedUrl("4ZdJKstetI0"),
-    mediaType: "youtube" as const,
+    media: "/videos/nothingheadphones.mov",
+    mediaType: "local" as const,
   },
   {
     title: "Websites",

@@ -1,5 +1,3 @@
-import { getYouTubeAutoplayEmbedUrl } from "@/lib/utils";
-
 export interface Project {
   id: string;
   title: string;
@@ -28,15 +26,15 @@ export const brands: Brand[] = [
         id: "spc-summer-intercol",
         title: "Summer Intercol",
         description: "Match-day highlights capturing the intensity of intercol competition.",
-        media: getYouTubeAutoplayEmbedUrl("--GjpQRF4EE"),
-        mediaType: "youtube",
+        media: "/videos/summerintercol.mp4",
+        mediaType: "local",
       },
       {
         id: "spc-concert",
         title: "Concert",
         description: "Cinematic coverage of live musical performance.",
-        media: getYouTubeAutoplayEmbedUrl("XSwKn42et64"),
-        mediaType: "youtube",
+        media: "/videos/alfresco-concert-web.mp4",
+        mediaType: "local",
       },
     ],
   },
