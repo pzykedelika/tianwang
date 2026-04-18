@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const brands = [
   { name: "St Peter's College", logo: "/images/brands/st-peters-college.png" },
-  { name: "Nothing", logo: "/images/brands/nothinglogo.png" },
+  { name: "Nothing", logo: "/images/brands/nothing_logo.png" },
   { name: "Pure Blanks", logo: "/images/brands/pure-blanks.png" },
   { name: "Simple Tuition", logo: "/images/brands/simple-tuition.png" },
 ];
