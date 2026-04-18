@@ -87,10 +87,10 @@ export default function BrandMarquee() {
       transition={{ duration: 1 }}
       className="w-full overflow-hidden py-16 md:py-24"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="relative w-full">
-          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
+      <div className="relative w-full">
+        <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
+        <div className="mx-auto max-w-7xl">
           <div ref={viewportRef} className="px-10 md:px-16">
             <div
               ref={trackRef}
