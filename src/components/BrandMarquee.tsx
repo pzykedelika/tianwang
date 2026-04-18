@@ -26,11 +26,11 @@ export default function BrandMarquee() {
       <div className="relative w-full">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        <div className="flex animate-marquee whitespace-nowrap">
+        <div className="flex w-max animate-marquee whitespace-nowrap">
           {[...Array(2)].map((_, dupeIdx) => (
             <div
               key={dupeIdx}
-              className="flex items-center gap-20 md:gap-32 px-10 md:px-16"
+              className="flex shrink-0 items-center gap-20 px-10 md:gap-32 md:px-16"
             >
               {brands.map((brand, i) => (
                 <div
