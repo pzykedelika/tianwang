@@ -10,22 +10,26 @@ const categories = [
   {
     title: "Sports",
     gradient: "from-accent/20 via-card to-muted/30",
-    video: "/videos/summerintercol.mp4",
+    media: "https://www.youtube.com/embed/--GjpQRF4EE?rel=0",
+    mediaType: "youtube" as const,
   },
   {
     title: "Concerts",
     gradient: "from-muted/30 via-card to-accent-light/10",
-    video: "/videos/concert.mp4",
+    media: "https://www.youtube.com/embed/XSwKn42et64?rel=0",
+    mediaType: "youtube" as const,
   },
   {
     title: "Products",
     gradient: "from-accent-light/10 via-card to-accent/20",
-    video: "/videos/nothingheadphones.mov",
+    media: "https://www.youtube.com/embed/4ZdJKstetI0?rel=0",
+    mediaType: "youtube" as const,
   },
   {
     title: "Websites",
     gradient: "from-card via-muted/20 to-accent/15",
-    video: "/videos/simpletuition.mp4",
+    media: "/videos/simpletuition.mp4",
+    mediaType: "local" as const,
     objectPosition: "top",
   },
 ];
@@ -102,9 +106,9 @@ function CategoryCard({
       <Link href="/work" className="group block">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card hover:border-accent/40 transition-all duration-500">
           <div className="relative aspect-[16/9] overflow-hidden">
-            {category.video ? (
+            {category.mediaType === "local" && category.media ? (
               <video
-                src={category.video}
+                src={category.media}
                 autoPlay
                 loop
                 muted
@@ -114,11 +118,24 @@ function CategoryCard({
                 style={{ objectPosition: category.objectPosition ?? "center" }}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-            ) : (
+            ) : null}
+
+            {category.mediaType === "youtube" && category.media ? (
+              <iframe
+                src={category.media}
+                title={category.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105"
+              />
+            ) : null}
+
+            {!category.media ? (
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${category.gradient} transition-transform duration-700 group-hover:scale-105`}
               />
-            )}
+            ) : null}
 
             {/* Category number */}
             <div className="absolute top-6 left-6">
