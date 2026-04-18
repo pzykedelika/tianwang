@@ -26,23 +26,22 @@ export default function BrandMarquee() {
       <div className="relative w-full">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        <div className="flex w-max animate-marquee whitespace-nowrap">
-          {[0, 1].map((groupIndex) => (
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...Array(2)].map((_, dupeIdx) => (
             <div
-              key={groupIndex}
-              className="flex shrink-0 items-center gap-20 md:gap-32"
-              aria-hidden={groupIndex === 1}
+              key={dupeIdx}
+              className="flex items-center gap-20 md:gap-32 px-10 md:px-16"
             >
-              {brands.map((brand, brandIndex) => (
+              {brands.map((brand, i) => (
                 <div
-                  key={`${groupIndex}-${brand.name}`}
-                  className="relative h-16 w-56 shrink-0 md:h-24 md:w-80"
+                  key={`${dupeIdx}-${brand.name}`}
+                  className="relative h-16 md:h-24 w-56 md:w-80 flex-shrink-0"
                 >
                   <Image
                     src={brand.logo}
-                    alt={groupIndex === 1 ? "" : brand.name}
+                    alt={brand.name}
                     fill
-                    priority={groupIndex === 0 && brandIndex === 0}
+                    priority={dupeIdx === 0 && i === 0}
                     className="object-contain grayscale opacity-60"
                     sizes="320px"
                   />
