@@ -89,47 +89,41 @@ export default function BrandMarquee() {
     >
       <div className="mx-auto max-w-7xl">
         <div className="relative w-full">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        <div ref={viewportRef} className="px-10 md:px-16">
-          <div className="pb-6 text-center md:pb-8">
-            <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.35em] text-white/80 md:text-sm">
-              Our Clients
-            </p>
-          </div>
-
-          <div
-            ref={trackRef}
-            className="flex w-max animate-marquee items-center gap-20 whitespace-nowrap md:gap-32"
-            style={
-              {
-                "--marquee-start": marqueeDistance ? `-${marqueeDistance}px` : "0px",
-                "--marquee-distance": marqueeDistance ? `-${marqueeDistance}px` : "0px",
-              } as CSSProperties
-            }
-          >
-          {Array.from({ length: copyCount }, (_, dupeIdx) => (
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-32 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-32 bg-gradient-to-l from-background to-transparent" />
+          <div ref={viewportRef} className="px-10 md:px-16">
             <div
-              ref={dupeIdx === 0 ? groupRef : undefined}
-              key={dupeIdx}
-              className="flex shrink-0 items-center gap-20 md:gap-32"
+              ref={trackRef}
+              className="flex w-max animate-marquee items-center gap-20 whitespace-nowrap md:gap-32"
+              style={
+                {
+                  "--marquee-start": marqueeDistance ? `-${marqueeDistance}px` : "0px",
+                  "--marquee-distance": marqueeDistance ? `-${marqueeDistance}px` : "0px",
+                } as CSSProperties
+              }
             >
-              {brands.map((brand, i) => (
-                <Image
-                  key={`${dupeIdx}-${brand.name}`}
-                  src={brand.logo}
-                  alt={brand.name}
-                  width={brand.width}
-                  height={brand.height}
-                  priority={dupeIdx === 0 && i === 0}
-                  className="h-16 w-auto shrink-0 grayscale opacity-60 md:h-24"
-                />
+              {Array.from({ length: copyCount }, (_, dupeIdx) => (
+                <div
+                  ref={dupeIdx === 0 ? groupRef : undefined}
+                  key={dupeIdx}
+                  className="flex shrink-0 items-center gap-20 md:gap-32"
+                >
+                  {brands.map((brand, i) => (
+                    <Image
+                      key={`${dupeIdx}-${brand.name}`}
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={brand.width}
+                      height={brand.height}
+                      priority={dupeIdx === 0 && i === 0}
+                      className="h-16 w-auto shrink-0 grayscale opacity-60 md:h-24"
+                    />
+                  ))}
+                </div>
               ))}
             </div>
-          ))}
           </div>
         </div>
-      </div>
       </div>
     </motion.div>
   );

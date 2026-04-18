@@ -110,27 +110,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             />
           )}
 
-          {project.mediaType === "youtube" && project.media && (
-            <iframe
-              src={project.media}
-              title={project.title}
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-              referrerPolicy="strict-origin-when-cross-origin"
-              className="absolute inset-0 w-full h-full"
-            />
-          )}
-
-          {project.mediaType === "vimeo" && project.media && (
-            <iframe
-              src={project.media}
-              title={project.title}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-            />
-          )}
-
           {!project.media && (
             <div className="absolute inset-0 flex items-center justify-center">
               <Play size={32} className="text-muted-foreground/30" />

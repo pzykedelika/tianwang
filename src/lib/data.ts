@@ -2,10 +2,9 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  /** YouTube/Vimeo embed URL, or local path like "/videos/file.mp4" */
+  /** Local path like "/videos/file.mp4" */
   media: string | null;
-  /** "youtube" | "vimeo" | "local" */
-  mediaType: "youtube" | "vimeo" | "local" | null;
+  mediaType: "local" | null;
 }
 
 export interface Brand {

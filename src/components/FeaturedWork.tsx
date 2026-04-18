@@ -120,19 +120,6 @@ function CategoryCard({
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             ) : null}
-
-            {category.mediaType === "youtube" && category.media ? (
-              <iframe
-                src={category.media}
-                title={category.title}
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                tabIndex={-1}
-                className="pointer-events-none absolute inset-0 h-full w-full"
-              />
-            ) : null}
-
             {!category.media ? (
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${category.gradient} transition-transform duration-700 group-hover:scale-105`}

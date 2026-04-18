@@ -99,28 +99,6 @@ function BrandSection({ brand, index }: { brand: Brand; index: number }) {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               )}
-
-              {featured.mediaType === "youtube" && featured.media && (
-                <iframe
-                  src={featured.media}
-                  title={featured.title}
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  className="absolute inset-0 w-full h-full"
-                />
-              )}
-
-              {featured.mediaType === "vimeo" && featured.media && (
-                <iframe
-                  src={featured.media}
-                  title={featured.title}
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full"
-                />
-              )}
-
               {!featured.media && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Play size={32} className="text-muted-foreground/30" />
