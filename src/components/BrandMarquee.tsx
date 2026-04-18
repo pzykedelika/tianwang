@@ -33,23 +33,30 @@ const brands = [
 
 export default function BrandMarquee() {
   const ref = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [marqueeDistance, setMarqueeDistance] = useState(0);
+  const [marqueeStart, setMarqueeStart] = useState(0);
 
   useEffect(() => {
     const track = trackRef.current;
     const group = groupRef.current;
+    const viewport = viewportRef.current;
 
-    if (!track || !group) {
+    if (!track || !group || !viewport) {
       return;
     }
 
     const updateDistance = () => {
       const trackStyles = window.getComputedStyle(track);
       const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
-      setMarqueeDistance(group.offsetWidth + gap);
+      const groupWidth = group.offsetWidth;
+      const viewportWidth = viewport.offsetWidth;
+
+      setMarqueeDistance(groupWidth + gap);
+      setMarqueeStart(Math.min(0, viewportWidth - groupWidth));
     };
 
     updateDistance();
@@ -60,6 +67,7 @@ export default function BrandMarquee() {
 
     resizeObserver.observe(track);
     resizeObserver.observe(group);
+    resizeObserver.observe(viewport);
 
     return () => {
       resizeObserver.disconnect();
@@ -77,12 +85,13 @@ export default function BrandMarquee() {
       <div className="relative w-full">
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-        <div className="px-10 md:px-16">
+        <div ref={viewportRef} className="px-10 md:px-16">
           <div
             ref={trackRef}
             className="flex w-max animate-marquee items-center gap-20 whitespace-nowrap md:gap-32"
             style={
               {
+                "--marquee-start": `${marqueeStart}px`,
                 "--marquee-distance": marqueeDistance ? `-${marqueeDistance}px` : "0px",
               } as CSSProperties
             }
